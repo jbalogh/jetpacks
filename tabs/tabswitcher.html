@@ -165,10 +165,12 @@ var LiquidMetal = function() {
           results = document.querySelector('#results ul');
       var onkeyup = function(){
         var val = e.value;
-        // DSU: rank all the tab names with the current input, filter out
-        // the non-matching (score=0) and bad matches (<0.5), sort and
-        // reverse so they're descending, then turn it into a list.
-        // Oh yeah.
+        /*
+         * DSU: rank all the tab names with the current input, filter out
+         * the non-matching (score=0) and bad matches (<0.5), sort and
+         * reverse so they're descending, then turn it into a list.
+         * Oh yeah.
+        */
         ts = tabs.map(function(name) [LiquidMetal.score(name, val), name]).
             filter(function(a) a[0] > 0.5).sort().reverse().
             map(function(a) {
