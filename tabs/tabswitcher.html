@@ -163,7 +163,7 @@ var LiquidMetal = function() {
       var tabs = ["jquery-1.3.2.min.js - jqueryjs - jQuery 1.3.2 (Minified) - Google Code","I am Jetpack.","Google"];
       var e = document.querySelector('#cmdinput'),
           results = document.querySelector('#results ul');
-      $(e).keyup(function(){
+      var onkeyup = function(){
         var val = e.value;
         // DSU: rank all the tab names with the current input, filter out
         // the non-matching (score=0) and bad matches (<0.5), sort and
@@ -176,11 +176,13 @@ var LiquidMetal = function() {
                 return '<li><a href="tab://' + e + '">' + e + '</a></li>';
             });
         results.innerHTML = ts.join('');
-      }).keyup().focus();
-    $(results).click(function(e){
+      };
+      var onclick = function(e){
         e.preventDefault();
-        console.log(e.target.href.substring(6));
-     });
+      };
+      e.addEventListener('keyup', onkeyup, false);
+      results.addEventListener('click', onclick, false);
+      e.focus();
     </script>
   </body>
 </html>
