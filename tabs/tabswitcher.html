@@ -96,7 +96,7 @@
       var tabs = [];
       var t = document.querySelector('#tabs');
       t.addEventListener('DOMNodeInserted',
-                         function(){ tabs = JSON.parse(t.innerHTML); onkeypress(); },
+                         function(){ tabs = JSON.parse(t.innerHTML); onkeyup(); },
                          false);
 
       /* Cache some elements. */
@@ -104,7 +104,7 @@
           results = document.querySelector('#results ul');
 
       /* Rank and sort tab names, update the results list. */
-      var onkeypress = function(){
+      var onkeyup = function(){
         var val = e.value;
         /*
          * DSU: rank all the tab names with the current input string, filter out
@@ -121,7 +121,7 @@
         results.innerHTML = ts.join('');
       };
 
-      e.addEventListener('keypress', onkeypress, false);
+      e.addEventListener('keyup', onkeyup, false);
       e.focus();
     </script>
     <script type="text/javascript">
