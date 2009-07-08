@@ -1,7 +1,7 @@
 /* Local place for sharing code. */
 var self = {};
 
-jetpack.tabs.onReady(function(doc){
+var setup = function(doc) {
 
   var $doc = $(doc); // jQuery-alized document object.
 
@@ -93,5 +93,9 @@ jetpack.tabs.onReady(function(doc){
         self.rm();
       });
     }
-  })
-});
+  });
+};
+
+/* Bind the onready handler, get any existing tabs as well. */
+jetpack.tabs.onReady(setup);
+jetpack.tabs.forEach(function(tab){ setup.call(tab, tab.contentDocument); });
