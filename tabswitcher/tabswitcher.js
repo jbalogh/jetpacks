@@ -1,5 +1,5 @@
-/* View the source at * http://github.com/jbalogh/jetpacks/tree/gh-pages/tabswitcher
- * see the uncompressed overlay.
+/* View the source at http://github.com/jbalogh/jetpacks/tree/gh-pages/tabswitcher
+ * to see the uncompressed overlay.
  */
 
 var self = {
