@@ -1,0 +1,14 @@
+body {
+  font-size: 1.3em;
+  font-family: Georgia, Times, serif;
+}
+h1 {
+  font-size: 2em;
+  font-family: Helvetica, Arial, sans-serif;
+}
+p {
+  width: 35em;
+}
+aside {
+  font-size: 0.5em;
+}
