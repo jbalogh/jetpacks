@@ -29,7 +29,7 @@ jetpack.tabs.onReady(function(doc){
     /* Do a tab switch when clicking on a result link.
      * The href looks like "tab://<tab name>".
      */
-    $doc.find('#results ul').click(function(e){
+    $doc.find('#results ul').click(function(e) {
         e.preventDefault();
         show(decodeURI(e.target.href.substring(6)));
     });
@@ -37,7 +37,7 @@ jetpack.tabs.onReady(function(doc){
     /* Grab the href from the first result link
      * if enter is pressed in the input.
      */
-    $doc.find('#cmdinput').keypress(function(e){
+    $doc.find('#cmdinput').keypress(function(e) {
         if (e.keyCode == 13) { /* Enter */
           show($doc.find('#results li:first-child a')
                 .attr('href').substring(6));
@@ -45,7 +45,7 @@ jetpack.tabs.onReady(function(doc){
     });
 
     /* Remove the overlay if ESC or C-t (the magic key) is hit. */
-    $doc.keypress(function(e){
+    $doc.keypress(function(e) {
         if (e.keyCode == 27 /* Esc */ ||
             e.ctrlKey && e.charCode == 116) {
           self.rm();
@@ -59,7 +59,7 @@ jetpack.tabs.onReady(function(doc){
   /* Catching this keypress would be way better in chrome.  Right now this won't
    * work if the document isn't focused (as happens with tab.focus()).
    */
-  $doc.keypress(function(e){
+  $doc.keypress(function(e) {
     /* Magic key: C-t. Probably only nice on macs. */
     if (e.ctrlKey && e.charCode == 116) {
       /* Drop the overlay in an iframe.  `html` is a string containing a full
@@ -82,7 +82,7 @@ jetpack.tabs.onReady(function(doc){
       body.appendChild(iframe);
 
       /* Set up a function so the overlay can be removed in other scopes. */
-      self.rm = function(){
+      self.rm = function() {
         body.removeChild(iframe);
         body.focus();
       }
