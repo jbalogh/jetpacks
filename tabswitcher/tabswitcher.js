@@ -2,12 +2,23 @@
  * see the uncompressed overlay.
  */
 
-/* Local place for sharing code. */
-var self = {};
+var self = {
+  _rm: [], /* List of overlays to be deleted. */
+};
 
 var setup = function(doc) {
 
   var $doc = $(doc); // jQuery-alized document object.
+
+  /* Delete all the overlays and clear the array. */
+  var clear_overlays = function() {
+    self._rm.forEach(function(e) {
+      var parent = e.parentNode;
+      parent.removeChild(e);
+      parent.focus();
+    });
+    self._rm.splice(0, self._rm.length);
+  };
 
   /* Do special things if we're looking at the overlay. */
   if (doc.title == 'Tab Switcher Overlay (secret code: asefiugi235urg)') {
@@ -23,11 +34,10 @@ var setup = function(doc) {
     });
 
     /* Focus on the tab by name and remove the overlay.
-     * self.rm is defined when the overlay is created.
      */
     var show = function(title) {
       tabs[title].focus();
-      self.rm();
+      clear_overlays();
     };
 
     /* Do a tab switch when clicking on a result link.
@@ -52,7 +62,7 @@ var setup = function(doc) {
     $doc.keypress(function(e) {
         if (e.keyCode == 27 /* Esc */ ||
             e.ctrlKey && e.charCode == 116) {
-          self.rm();
+          clear_overlays();
         }
     });
 
@@ -82,19 +92,13 @@ var setup = function(doc) {
         'z-index': 9999,
       });
 
-      var body = doc.body;
-      body.appendChild(iframe);
-
-      /* Set up a function so the overlay can be removed in other scopes. */
-      self.rm = function() {
-        body.removeChild(iframe);
-        body.focus();
-      }
+      doc.body.appendChild(iframe);
+      self._rm.push(iframe);
 
       /* Remove the overlay if there's a click outside. */
-      $(body).click(function() {
+      $(doc.body).click(function() {
         $(this).unbind('click', arguments.callee);
-        self.rm();
+        clear_overlays();
       });
     }
   });
