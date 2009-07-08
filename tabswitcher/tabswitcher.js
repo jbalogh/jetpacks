@@ -95,10 +95,17 @@ var setup = function(doc) {
       doc.body.appendChild(iframe);
       self._rm.push(iframe);
 
-      /* Remove the overlay if there's a click outside. */
-      $(doc.body).click(function() {
-        $(this).unbind('click', arguments.callee);
+      /* Remove the overlay if there's a click or ESC outside
+       * and get rid of the callback.
+       */
+      var remover = function(f){
+        $(this).unbind('click', f || arguments.callee);
         clear_overlays();
+      }
+      $(doc.body).click(remover).keypress(function(e) {
+        if (e.keyCode == 27) { /* Esc */
+          remover.call(this, arguments.callee);
+        }
       });
     }
   });
