@@ -1,44 +1,55 @@
 <!DOCTYPE html>
+<!-- All comments must be multiline, this page is smooshed into a data URL. -->
 <html>
   <head>
     <meta http-equiv="Content-type" content="text/html; charset=utf-8">
-    <title>tabs</title>
+    <!-- Secret code for uniqueness and mystery, matched on jetpack side. -->
+    <title>Tab Switcher Overlay (secret code: asefiugi235urg)</title>
     <style type="text/css" media="screen">
+      /* Hot styling inspired by "Ubiquity Evolved" theme from Stephen Horlander
+       * and Aza Raskin.
+       */
       div, input, ul, li { margin: 0; padding: 0; }
+      body { font-size: 16px; }
       #overlay {
         position: absolute;
         top: 0;
         left: 0;
         width: 50em;
       }
+      /* Inner border around the whole overlay. */
       #cmdline, #results {
         border: 1px solid #7e7e7e;
       }
+      /* Command line up top. */
       #cmdline, #cmdinput {
         background-color: #9e9e9e;
       }
+      /* Round the top corners so the whole overlay has a rounded look. */
       #cmdline {
         -moz-border-radius-topleft: 1em;
         -moz-border-radius-topright: 1em;
         border-bottom: 1px solid #000;
       }
+      /* The text input. */
       #cmdinput {
         font-family: Geneva, Tahoma, Verdana;
         font-size: 1.6em;
         text-shadow: #afafaf 0px 1px .2px;
         border: none;
         margin: 0.3em;
-        width: 99%;
+        width: 99%; /* Leave some room for rounding. */
       }
+      /* The listing of matches. Round the bottom to finish the rounded overlay. */
       #results {
         background-color: #2b2b2b;
         border-top: none;
-        height: 100%;
         min-height: 29em;
         padding-bottom: 1em;
         -moz-border-radius-bottomleft: 1em;
         -moz-border-radius-bottomright: 1em;
       }
+      /* Show each result link as block so there's a big click area. */
       #results a {
         display: block;
         background-color: #808080;
@@ -51,18 +62,26 @@
         text-decoration: none;
         padding: 1em;
       }
+      /* Give the focused result link some color standout. */
       #results a:focus {
         font-weight: bold;
         background-color: #c0c0c0;
+      }
+      /* Change the shape of the first child and focused link.  Including the
+       * first child to hint that it's the default choice.
+       */
+      #results li:first-child a, #results a:focus {
         border: none;
         -moz-box-shadow: 0 0 0.3em inset;
         -moz-border-radius: 0.4em;
       }
-      #tabs {
-        display: none;
-      }
+      /* Just for shuttling messages between this page and jetpack. */
+      #tabs { display: none; }
     </style>
     <script type="text/javascript">
+    /* Inlining the lib is easier than figuring out how to get jetpack to
+     * include it.  We want it always local so it's super fast.
+     */
 /*
  * LiquidMetal, version: 0.1 (2009-02-05)
  *
@@ -164,23 +183,27 @@ var LiquidMetal = function() {
     </div>
     <span id="tabs"></span>
     <script type="text/javascript">
-
+      /* Jetpack code drops data in #tabs.  When that happens we extract the
+       * data and put it in a local variable, then rank the input.
+       */
       var tabs = [];
+      var t = document.querySelector('#tabs');
+      t.addEventListener('DOMNodeInserted',
+                         function(){ tabs = JSON.parse(t.innerHTML); onkeypress(); },
+                         false);
+
+      /* Cache some elements. */
       var e = document.querySelector('#cmdinput'),
           results = document.querySelector('#results ul');
 
-      var t = document.querySelector('#tabs');
-      t.addEventListener('DOMNodeInserted',
-                         function(){ tabs = JSON.parse(t.innerHTML); onkeyup(); },
-                         false);
-
-      var onkeyup = function(){
+      /* Rank and sort tab names, update the results list. */
+      var onkeypress = function(){
         var val = e.value;
         /*
-         * DSU: rank all the tab names with the current input, filter out
-         * the non-matching (score=0) and bad matches (<0.5), sort and
-         * reverse so they're descending, then turn it into a list.
-         * Oh yeah.
+         * DSU: rank all the tab names with the current input string, filter out
+         * the non-matching (score=0) and bad matches (<0.5), sort and reverse
+         * so they're ordered descending, then turn it into a list of links.
+         * Oh yeah. One (extended) line.
         */
         ts = tabs.map(function(name) [LiquidMetal.score(name, val), name]).
             filter(function(a) a[0] > 0.5).sort().reverse().
@@ -191,7 +214,7 @@ var LiquidMetal = function() {
         results.innerHTML = ts.join('');
       };
 
-      e.addEventListener('keyup', onkeyup, false);
+      e.addEventListener('keypress', onkeypress, false);
       e.focus();
     </script>
   </body>
