@@ -1,4 +1,4 @@
-/* View the source at http://github.com/jbalogh/jetpacks/tree/gh-pages/tabs to
+/* View the source at * http://github.com/jbalogh/jetpacks/tree/gh-pages/tabswitcher
  * see the uncompressed overlay.
  */
 
