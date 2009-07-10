@@ -1,0 +1,28 @@
+<!DOCTYPE HTML>
+<html lang=en>
+  <head>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+    <title>Skip Bugzilla's process_bug.cgi</title>
+    <link rel="jetpack" href="skip-process-bug.js">
+    <link rel="stylesheet" href="../../media/style.css">
+  </head>
+  <body>
+    <article>
+      <h1>Skip Bugzilla's process_bug.cgi</h1>
+      <p>
+        When you update anything on Bugzilla, you're left on process_bug.cgi, a
+        POSTed page.  This sucks.  <code>POST</code> is for data,
+        <code>GET</code> is for web pages.
+      </p>
+      <p>
+        When process_bug.cgi is detected, document.location is changed to the
+        bug's real location and any email notifications are shown with
+        <code>jetpack.notifications</code>.
+      </p>
+      <p>
+        This jetpack uses some terrible screen scraping that's likely to break,
+        but I'll probably fix it quickly since I'm on bugzilla every day.
+      </p>
+    </article>
+  </body>
+</html>
