@@ -1,6 +1,6 @@
 jetpack.tabs.onReady(function(doc){
   var root = 'https://bugzilla.mozilla.org/',
-      pages = ['process_bug', 'attachment'],
+      pages = ['attachment', 'post_bug', 'process_bug'],
       paths = pages.map(function(p) root + p + '.cgi');
   if (paths.some(function(p) doc.location == p)) {
     var $doc = $(doc),
