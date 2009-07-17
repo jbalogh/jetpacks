@@ -10,12 +10,16 @@
        * and Aza Raskin.
        */
       div, input, ul, li { margin: 0; padding: 0; }
-      body { font-size: 16px; }
+      body {
+        font-size: 16px;
+        font-family: Helvetica;
+        text-shadow: #afafaf 0px 1px .2px;
+      }
       #overlay {
         position: absolute;
         top: 0;
         left: 0;
-        width: 50em;
+        width: 40em;
       }
       /* Inner border around the whole overlay. */
       #cmdline, #results {
@@ -35,10 +39,9 @@
       #cmdinput {
         font-family: Geneva, Tahoma, Verdana;
         font-size: 1.6em;
-        text-shadow: #afafaf 0px 1px .2px;
         border: none;
         margin: 0.3em;
-        width: 99%; /* Leave some room for rounding. */
+        width: 97%; /* Leave some room for rounding. */
       }
       /* The listing of matches. Round the bottom to finish the rounded overlay. */
       #results {
@@ -58,7 +61,6 @@
         border-right: 1px solid #525252;
         border-bottom: 1px solid #525252;
         font-size: 1.1em;
-        text-shadow: #afafaf 0px 1px .2px;
         text-decoration: none;
         padding: 1em;
       }
