@@ -79,6 +79,11 @@
       }
       /* Just for shuttling messages between this page and jetpack. */
       #tabs { display: none; }
+      .favicon {
+        border: none;
+        float: right;
+        vertical-align: middle;
+      }
     </style>
   </head>
   <body>
@@ -92,6 +97,8 @@
     </div>
     <span id="tabs"></span>
     <script type="text/javascript">
+      var keys = function(o) [k for (k in o)];
+
       /* Jetpack code drops data in #tabs.  When that happens we extract the
        * data and put it in a local variable, then rank the input.
        */
@@ -114,11 +121,13 @@
          * so they're ordered descending, then turn it into a list of links.
          * Oh yeah. One (extended) line.
         */
-        ts = tabs.map(function(name) [LiquidMetal.score(name, val), name]).
+        ts = keys(tabs).map(function(name) [LiquidMetal.score(name, val), name]).
             filter(function(a) a[0] > 0.5).sort().reverse().
             map(function(a) {
-                var e = a[1];
-                return '<li><a href="tab://' + e + '">' + e + '</a></li>';
+                var e = a[1],
+                    favicon = tabs[e],
+                    img = favicon ?  '<img class="favicon" src="' + favicon+ '">' : '';
+                return '<li><a href="tab://' + e + '">' + e + img + '</a></li>';
             });
         results.innerHTML = ts.join('');
       };

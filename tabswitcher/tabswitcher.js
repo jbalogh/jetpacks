@@ -26,11 +26,11 @@ var setup = function(doc) {
     /* The array of titles is passed to the overlay, the mapping finds the tab
      * we want.
      */
-    var titles = [], tabs = {};
+    var titles = {}, tabs = {};
     jetpack.tabs.forEach(function(tab) {
         var title = tab.contentDocument.title;
         tabs[title] = tab;
-        titles.push(title);
+        titles[title] = tab.favicon;
     });
 
     /* Focus on the tab by name and remove the overlay.
