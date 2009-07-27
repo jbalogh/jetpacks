@@ -212,12 +212,6 @@ background-repeat: no-repeat !important;
 	text-shadow: 0 1px 1px #fff;
 }
 
-.entry-author {
-	font-size: 0 !important;
-	letter-spacing: -5px;
-	color: transparent !important;
-}
-
 .cards .entry-source-title {
 	font-size: 14px !important;
 	letter-spacing: 0 !important;
