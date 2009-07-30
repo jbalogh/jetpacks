@@ -24,7 +24,8 @@ jetpack.pageMods.add(function(doc) {
 
     for (var [k,o] in Iterator(places)) {
         if (o != match) {
-            links.push('<li><a href="' + o.url + path + '">' + k + '</a></li>');
+            var href = o.url + path + doc.location.hash;
+            links.push('<li><a href="' + href + '">' + k + '</a></li>');
         }
     }
 
