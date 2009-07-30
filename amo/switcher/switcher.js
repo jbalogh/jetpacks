@@ -1,3 +1,5 @@
+jetpack.future.import('pageMods');
+
 var places = {
   preview: {scheme: 'https',
             host: 'preview.addons.mozilla.org',
@@ -10,25 +12,44 @@ var places = {
             prefix: '/amo/site'}
 };
 
-var buttons = ['<button id="' + k + '">' + k[0].toUpperCase() + '</button>'
-               for (k in places)];
+for each (var o in places) {
+    o.url = o.scheme + '://' + o.host + o.prefix;
+}
 
-jetpack.statusBar.append({
-    html: '<div id="amo-switcher">' + buttons.join('') + '</div>',
-    width: 81,
-    onReady: function(doc) {
-        $(doc).find('#amo-switcher').click(function(e) {
-            var target = e.target.id,
-                next = places[target],
-                d = jetpack.tabs.focused.contentDocument,
-                l = d.location;
-            for (var k in places) {
-                if (k != target &&
-                    l.host.indexOf(places[k].host) != -1) {
-                    var path = l.pathname.replace(places[k].prefix, '');
-                    d.location = next.scheme + '://' + next.host + next.prefix + path;
-                }
-            }
-        });
+jetpack.pageMods.add(function(doc) {
+    var match = [v for each (v in places)
+                 if (doc.location.host.indexOf(v.host) != -1)][0],
+        path = doc.location.pathname.replace(match.prefix, ''),
+        links = [];
+
+    for (var [k,o] in Iterator(places)) {
+        if (o != match) {
+            links.push('<li><a href="' + o.url + path + '">' + k + '</a></li>');
+        }
     }
-});
+
+    $(doc).find('head').append(style.toXMLString());
+    $(doc.body).append('<ul id="jetpack-amo-switcher">' + links.join('') + '</ul>');
+},
+[o.url + '/*' for each (o in places)]);
+
+var style = <>
+<style type="text/css"><![CDATA[
+  #jetpack-amo-switcher {
+    -moz-border-radius: 8px;
+    -moz-border-radius-topleft: 0px;
+    border: 1px solid #aaa;
+    padding: 6px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 9000;
+    background-color: #eee;
+    opacity: .9;
+  }
+  #jetpack-amo-switcher a {
+    text-shadow: 0 1px 0 #999;
+    color: #0055EE;
+  }
+]]></style>
+</>;
