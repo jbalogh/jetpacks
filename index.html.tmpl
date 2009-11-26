@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block title -%}
+These are my Jetpacks.
+{%- endblock %}
+
+{% block article -%}
+  <ul>
+    {% for title, path in articles.items() %}
+      <li><a href="{{ path }}">{{ title }}</a></li>
+    {% endfor %}
+  </ul>
+{% endblock %}
