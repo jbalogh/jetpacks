@@ -1,0 +1,24 @@
+body {
+  font-size: 1.3em;
+  font-family: serif;
+}
+h1 {
+  font-size: 2em;
+  font-family: Helvetica, Arial, sans-serif;
+}
+p {
+  width: 35em;
+  line-height: 1.2em;
+}
+aside {
+  font-size: 0.5em;
+}
+footer {
+  font-size: 0.8em;
+}
+ul {
+  list-style-type: none;
+}
+li {
+  margin: 0.3em 0;
+}
