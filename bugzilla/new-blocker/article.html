@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+---
+title: Create a New Blocker for the Current Bug
+jetpack: new-blocker.js
+---
+
+{% block article -%}
+  <p>
+    Adds an inline link to create a new bug that blocks the current bug.  Look
+    for it under the "Depends On" input field.
+  </p>
+  <p>
+    Inspired by a
+    <a href="http://userscripts.org/scripts/show/55265">Greasemonkey script</a>
+    that does the same thing, but everyone knows Jetpacks are cooler than
+    Greasemonkeys.  Thanks to <a href="http://spindrop.us/">Dave Dash</a> for
+    the original script and the cool beard.
+  </p>
+{%- endblock %}
