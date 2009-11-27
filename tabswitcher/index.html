@@ -1,51 +1,49 @@
-<!DOCTYPE HTML>
-<html lang=en>
+<!DOCTYPE html>
+<html lang="en">
   <head>
-    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+    <meta charset="utf-8">
     <title>Tab Switcher Jetpack</title>
-    <link rel="jetpack" href="tabswitcher.js">
     <link rel="stylesheet" href="../media/style.css">
+    <link rel="jetpack" href="tabswitcher.js">
     <style type="text/css">
     .guilty { font-size: 0.7em }
     code { background-color: #ff9 }
     img { margin-top: 0.5em }
-    </style>
+    .strike { text-decoration: line-through }
+  </style>
   </head>
   <body>
     <article>
       <h1>Tab Switcher Jetpack</h1>
       <p>
-        Inspired by 
-        <a href="https://addons.mozilla.org/addon/10164">Search Tab</a>,
-        Ubiquity, and Emacs, this <strike>jetpack</strike> feature gives you a
-        Quicksilver-like keyboard interface for switching tabs.  Invoke it
-        with <code>Control-t</code> to see the switcher pop up.
-        <span class="guilty">
-          I know, that sucks on anything not-Mac.  What hotkey is good on your
-          platform?
-        </span>
-      </p>
-      <p>
-        Use <code>TAB</code> to cycle through the results or just press
-        <code>ENTER</code> to select the first match.
-      </p>
-      <p>
-        If you had the same tabs open as me, your switcher would look like
-        this:
-        <img alt="Tab Switcher Screenshot"
-             src="../media/tab-switcher-screenshot.jpg">
-      </p>
-      <p>
-        Known bugs:
-        <ul>
-          <li>Hotkey won't work if document does not have focus.</li>
-        </ul>
-      </p>
-      <footer>
-        Uses Ryan McGeary's 
-        <a href="http://github.com/rmm5t/liquidmetal/">Liquid Metal</a> library
-        for string matching. Thanks!
-      </footer>
+    Inspired by
+    <a href="https://addons.mozilla.org/addon/10164">Search Tab</a>, Ubiquity,
+    and Emacs, this <mark class="strike">jetpack</mark> feature gives you a
+    Quicksilver-like keyboard interface for switching tabs.  Invoke it with
+    <code>Control-t</code> to see the switcher pop up.
+    <span class="guilty">
+      I know, that sucks on anything not-Mac.  What hotkey is good on your
+      platform?
+    </span>
+  </p>
+  <p>
+    Use <code>TAB</code> to cycle through the results or just press
+    <code>ENTER</code> to select the first match.
+  </p>
+  <p>
+    If you had the same tabs open as me, your switcher would look like this:
+    <img alt="Tab Switcher Screenshot"
+         src="../media/tab-switcher-screenshot.jpg">
+  </p>
+  <p>Known bugs:</p>
+  <ul>
+    <li>Hotkey won't work if document does not have focus.</li>
+  </ul>
+  <footer>
+    Uses Ryan McGeary's
+    <a href="http://github.com/rmm5t/liquidmetal/">Liquid Metal</a> library
+    for string matching. Thanks!
+  </footer>
     </article>
   </body>
 </html>
