@@ -41,7 +41,7 @@ def main():
 
     for article in articles:
         title = write_article(env, article)
-        titles[title] = article.dirname() / 'index.html'
+        titles[title] = article.dirname()
 
     template = env.get_template('index.html.tmpl')
     open('index.html', 'w').write(template.render(articles=titles))
