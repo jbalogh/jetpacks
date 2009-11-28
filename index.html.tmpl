@@ -6,7 +6,7 @@ These are my Jetpacks.
 
 {% block article -%}
   <ul>
-    {% for title, path in articles.items() %}
+    {% for title, path in articles %}
       <li><a href="{{ path }}">{{ title }}</a></li>
     {% endfor %}
   </ul>

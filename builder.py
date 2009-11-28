@@ -37,11 +37,11 @@ def main():
     env = jinja2.Environment(loader=jinja2.FileSystemLoader('.'))
     articles = map(lambda s: path(s.lstrip('./')),
                    path('.').walkfiles('article.html'))
-    titles = {}
+    titles = []
 
     for article in articles:
         title = write_article(env, article)
-        titles[title] = article.dirname()
+        titles.append((title, article.dirname()))
 
     template = env.get_template('index.html.tmpl')
     open('index.html', 'w').write(template.render(articles=titles))
