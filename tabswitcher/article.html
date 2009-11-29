@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+---
+title: Tab Switcher Jetpack
+jetpack: tabswitcher.js
+---
+
+{% block head -%}
+  <style type="text/css">
+    .guilty { font-size: 0.7em }
+    code { background-color: #ff9 }
+    img { margin-top: 0.5em }
+    .strike { text-decoration: line-through }
+  </style>
+{%- endblock %}
+
+{% block article -%}
+  <p>
+    Inspired by
+    <a href="https://addons.mozilla.org/addon/10164">Search Tab</a>, Ubiquity,
+    and Emacs, this <mark class="strike">jetpack</mark> feature gives you a
+    Quicksilver-like keyboard interface for switching tabs.  Invoke it with
+    <code>Control-t</code> to see the switcher pop up.
+    <span class="guilty">
+      I know, that sucks on anything not-Mac.  What hotkey is good on your
+      platform?
+    </span>
+  </p>
+  <p>
+    Use <code>TAB</code> to cycle through the results or just press
+    <code>ENTER</code> to select the first match.
+  </p>
+  <p>
+    If you had the same tabs open as me, your switcher would look like this:
+    <img alt="Tab Switcher Screenshot"
+         src="../media/tab-switcher-screenshot.jpg">
+  </p>
+  <p>Known bugs:</p>
+  <ul>
+    <li>Hotkey won't work if document does not have focus.</li>
+  </ul>
+  <footer>
+    Uses Ryan McGeary's
+    <a href="http://github.com/rmm5t/liquidmetal/">Liquid Metal</a> library
+    for string matching. Thanks!
+  </footer>
+{%- endblock %}

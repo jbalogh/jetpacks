@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>{% block title %}{{ title }}{% endblock %}</title>
+    <link rel="stylesheet" href="{{ depth }}media/style.css">
+    {% if jetpack %}<link rel="jetpack" href="{{ jetpack }}">{% endif %}
+    {% block head %}{% endblock %}
+  </head>
+  <body>
+    <article>
+      <h1>{{ self.title() }}</h1>
+      {% block article %}{% endblock %}
+    </article>
+  </body>
+</html>
