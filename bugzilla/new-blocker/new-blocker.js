@@ -7,13 +7,13 @@ var queryString = function(pairs){
   return [(k + '=' + v) for ([k, v] in Iterator(pairs))].join('&');
 }
 
-jetpack.pageMods.add(function(document){
-  var q = function(e) document.querySelector(e),
+jetpack.pageMods.add(function(doc){
+  var q = function(e) doc.querySelector(e),
       qs = {product: q('#product').value,
             component: q('#component').value,
             blocked: q('[name=id]').value},
       url = ROOT + '?' + queryString(qs);
-  $('<a href="' + url + '">Create new dependency</a>')
+  $('<a href="' + url + '">Create new dependency</a>', doc)
       .appendTo(q('#dependson_input_area').parentNode);
 },
-['https://bugzilla.mozilla.org/*']);
+['https://bugzilla.mozilla.org/show_bug.cgi*']);
