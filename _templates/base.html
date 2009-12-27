@@ -4,6 +4,8 @@
     <meta charset="utf-8">
     <title>{% block title %}{{ title }}{% endblock %}</title>
     <link rel="stylesheet" href="{{ depth }}media/style.css">
+    <link href="{{ depth}}feed.xml" rel="alternate" type="application/atom+xml"
+          title="Jetpacks from jbalogh">
     {% if jetpack %}<link rel="jetpack" href="{{ jetpack }}">{% endif %}
     {% block head %}{% endblock %}
   </head>

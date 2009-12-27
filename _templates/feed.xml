@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Jetpacks from jbalogh</title>
+  <link href="http://jbalogh.github.com/jetpacks/" />
+  <link href="http://jbalogh.github.com/jetpacks/feed.xml" rel="self" />
+  <updated>{{ site.time|xml_date }}</updated>
+  <author><name>Jeff Balogh</name></author>
+  <id>http://jbalogh.github.com/jetpacks/</id>
+
+
+  {% for post in site.posts|sortby('date', reverse=True) %}
+  <entry>
+    <title>{{ post.title }}</title>
+    <link href="http://jbalogh.github.com/jetpacks/{{ post.permalink }}" />
+    <id>http://jbalogh.github.com/jetpacks/{{ post.permalink }}</id>
+    <updated>{{ post.date|xml_date }}</updated>
+    <content type="html">{{ post.blocks.article|escape }}</content>
+  </entry>
+  {% endfor %}
+</feed>

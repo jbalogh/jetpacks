@@ -6,8 +6,8 @@ These are my Jetpacks.
 
 {% block article -%}
   <ul>
-    {% for title, path in articles %}
-      <li><a href="{{ path }}">{{ title }}</a></li>
+    {% for page in site.posts|sortby('title') -%}
+      <li><a href="{{ page.permalink }}">{{ page.title }}</a></li>
     {% endfor %}
   </ul>
 {% endblock %}
